@@ -99,10 +99,12 @@ public class AppMailServiceImp implements AppMailDataService {
 
     @Override
     public CustomerLog EditData(CustomerLog customerLog, Long id) {
+        LOGGER.info("Subject : {}", customerLog.getSubject());
         customerLog.setId(id);
         customerLogRepository.save(customerLog);
         LOGGER.info("Edit sent Date: {}", customerLog.getSentDate());
         LOGGER.info("Edit : {}", customerLog.getId());
+
         return customerLogRepository.findById(id).get();
     }
 
