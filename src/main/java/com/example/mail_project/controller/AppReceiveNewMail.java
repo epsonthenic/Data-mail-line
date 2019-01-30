@@ -135,7 +135,7 @@ public class AppReceiveNewMail {
 
                 String attachFiles = "";
                 String result="";
-                String saveDirectory = "/home/nick/File_mail";
+                String saveDirectory = "/home/pang/File_mail";
 
 
 
