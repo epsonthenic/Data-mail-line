@@ -211,7 +211,7 @@ public class AppMailServiceImp implements AppMailDataService {
 
         switch(code)
         {
-            case "progran.list" :{
+            case "program.list" :{
                 LIST_PROGRAM = null;
                 LIST_PROGRAM =new ArrayList<>();
                 for (String result : resultKeyword) {
@@ -221,7 +221,7 @@ public class AppMailServiceImp implements AppMailDataService {
                 for (String progran : keywordSplitList){
                     LIST_PROGRAM.add(progran);
                 }
-                LOGGER.info("progran : {}", LIST_PROGRAM);
+                LOGGER.info("program : {}", LIST_PROGRAM);
             }
             countKeyword = 0;
             break;
@@ -244,7 +244,7 @@ public class AppMailServiceImp implements AppMailDataService {
                 break;
         }
         LOGGER.info("Keywor : {}", LIST_KEYWORD);
-        LOGGER.info("progran : {}", LIST_PROGRAM);
+        LOGGER.info("program : {}", LIST_PROGRAM);
         return masterDataDetailRepository.findMasterDataDetailsByIdEquals(id, code);
     }
 

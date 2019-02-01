@@ -123,7 +123,7 @@ public class AppReceiveMail {
 
                 String attachFiles = "";
                 String result = "";
-                String saveDirectory = "/home/pang/File_mail";
+                String saveDirectory = "/home/nick/File_mail";
 
                 //-----------------------------------------------------------------------------------//
                 //ตรวจว่า email มี content เป็น อะไร
@@ -219,7 +219,7 @@ public class AppReceiveMail {
     //method ที่ทำหน้าที่ getText content จาก email ออกมา
     public String getTextFromMimeMultipart(Multipart mimeMultipart, int partcount) throws Exception {
         String result = "";
-        String saveDirectory="/home/pang/File_mail";
+        String saveDirectory="/home/nick/File_mail";
         String fileName = "";
         int partCount = mimeMultipart.getCount();
         for (int i = 0; i < partCount; i++) {
