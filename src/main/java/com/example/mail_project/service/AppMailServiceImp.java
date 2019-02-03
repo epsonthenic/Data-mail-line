@@ -43,6 +43,10 @@ public class AppMailServiceImp implements AppMailDataService {
 
     public static List<String> LIST_KEYWORD = new ArrayList<>();
     public static List<String> LIST_PROGRAM = new ArrayList<>();
+    public static List<String> LIST_LEVEL = new ArrayList<>();
+    public static List<String> LIST_STATUS = new ArrayList<>();
+    public static List<String> LIST_TYPE = new ArrayList<>();
+
 
     @PersistenceContext
   private EntityManager em;
@@ -239,6 +243,50 @@ public class AppMailServiceImp implements AppMailDataService {
             }
             countKeyword = 0;
             break;
+            /////////////////////////////////////////////////////
+//            case "level.list" :{
+//                LIST_LEVEL = null;
+//                LIST_LEVEL =new ArrayList<>();
+//                for (String result : resultKeyword) {
+//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
+//                    keywordSplitList = resultKeyword[countresult].split(",");
+//                }
+//                for (String keyword : keywordSplitList){
+//                    LIST_LEVEL.add(keyword);
+//                }
+//                LOGGER.info("level : {}", LIST_LEVEL);
+//            }
+//            countKeyword = 0;
+//            break;
+//            case "status.list" :{
+//                LIST_STATUS = null;
+//                LIST_STATUS =new ArrayList<>();
+//                for (String result : resultKeyword) {
+//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
+//                    keywordSplitList = resultKeyword[countresult].split(",");
+//                }
+//                for (String keyword : keywordSplitList){
+//                    LIST_STATUS.add(keyword);
+//                }
+//                LOGGER.info("status : {}", LIST_STATUS);
+//            }
+//            countKeyword = 0;
+//            break;
+//            case "type.list" :{
+//                LIST_TYPE = null;
+//                LIST_TYPE =new ArrayList<>();
+//                for (String result : resultKeyword) {
+//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
+//                    keywordSplitList = resultKeyword[countresult].split(",");
+//                }
+//                for (String keyword : keywordSplitList){
+//                    LIST_TYPE.add(keyword);
+//                }
+//                LOGGER.info("type : {}", LIST_TYPE);
+//            }
+//            countKeyword = 0;
+//            break;
+            /////////////////////////////////////////////////////
             default :
                 LOGGER.info("countresult : {}", countresult++);
                 break;

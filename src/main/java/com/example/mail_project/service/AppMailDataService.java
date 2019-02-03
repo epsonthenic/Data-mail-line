@@ -91,4 +91,5 @@ public interface AppMailDataService {
     List<CustomerLog> findByDate(double startTime,double endTime);
 
     List<CustomerLog> findCustomerLogByCriteria2(String startTime,String endTime);
+
 }
