@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3ce3f6c0-fb79-4da3-85ec-ed091373dd6c" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mail_project/MailProjectApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mail_project/MailProjectApplication.java" afterDir="false" />
@@ -13,6 +14,12 @@
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/example/mail_project/service/AppMailServiceImp.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/mail_project/service/AppMailServiceImp.class" afterDir="false" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,48 +62,85 @@
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java">
+<<<<<<< HEAD
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="310">
               <caret line="512" column="44" selection-start-line="512" selection-start-column="44" selection-end-line="512" selection-end-column="44" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="407" column="71" lean-forward="true" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/MailProjectApplication.java">
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="39" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="315">
+              <caret line="21" lean-forward="true" selection-end-line="21" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/MailProjectApplication.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="39" selection-start-line="39" selection-end-line="39" />
+=======
+        <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/customer_log">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveMail.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="123">
               <caret line="221" column="40" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="97" column="108" selection-start-line="97" selection-start-column="108" selection-end-line="97" selection-end-column="108" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveNewMail.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="431">
               <caret line="136" column="33" selection-start-line="136" selection-start-column="33" selection-end-line="136" selection-end-column="33" />
+=======
+        <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data_detail">
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data_detail">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
+        <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_1.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" lean-forward="true" selection-end-line="1" />
             </state>
           </provider>
         </entry>
@@ -113,8 +157,13 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="375">
               <caret line="25" column="44" selection-start-line="25" selection-start-column="44" selection-end-line="25" selection-end-column="44" />
+=======
+            <state relative-caret-position="342">
+              <caret line="93" selection-start-line="93" selection-end-line="93" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
             </state>
           </provider>
         </entry>
@@ -122,6 +171,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console.sql">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="120">
               <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
             </state>
@@ -133,6 +183,10 @@
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
+=======
+            <state relative-caret-position="150">
+              <caret line="175" column="28" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="28" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
             </state>
           </provider>
         </entry>
@@ -142,6 +196,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="870">
               <caret line="66" column="34" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/entity/MasterData.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="20" column="23" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="23" />
             </state>
           </provider>
         </entry>
@@ -166,7 +229,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_1.sql" />
+=======
+        <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveNewMail.java" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_2.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_3.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_4.sql" />
@@ -176,13 +243,19 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_5.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/repository/MasterDataDetailRepository.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailDataService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppMailDataController.java" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/MailProjectApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveMail.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveNewMail.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console.sql" />
+=======
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console.sql" />
+        <option value="$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_1.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java" />
       </list>
     </option>
   </component>
@@ -198,6 +271,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -332,13 +406,22 @@
       <workItem from="1549027959160" duration="8000" />
       <workItem from="1549117355734" duration="978000" />
       <workItem from="1549189016484" duration="3286000" />
+<<<<<<< HEAD
       <workItem from="1549205611074" duration="6490000" />
       <workItem from="1549250992043" duration="3039000" />
+=======
+      <workItem from="1549205611074" duration="6654000" />
+      <workItem from="1549244104200" duration="9250000" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="23475000" />
+=======
+    <option name="totallyTimeSpent" value="29850000" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -353,7 +436,11 @@
     <frame x="43" y="-4" width="1323" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27094755" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2713057" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -375,9 +462,13 @@
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
       <window_info anchor="bottom" id="Database Changes" order="12" />
       <window_info anchor="bottom" id="Version Control" order="13" weight="0.3782946" />
-      <window_info anchor="bottom" id="Database Console" order="14" weight="0.51472867" />
+      <window_info anchor="bottom" id="Database Console" order="14" visible="true" weight="0.30697674" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+<<<<<<< HEAD
       <window_info active="true" anchor="right" id="Database" order="1" visible="true" weight="0.165231" />
+=======
+      <window_info anchor="right" id="Database" order="1" visible="true" weight="0.0" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
       <window_info anchor="right" id="Maven" order="4" />
@@ -406,15 +497,39 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-585">
           <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveNewMail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="137" column="50" selection-start-line="137" selection-start-column="50" selection-end-line="137" selection-end-column="50" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         </state>
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_2.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_3.sql" />
+<<<<<<< HEAD
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveMail.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="38" selection-start-line="38" selection-end-line="39" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_4.sql" />
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/RepositoryConfig.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -454,6 +569,7 @@
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_6.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_7.sql" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_5.sql" />
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/entity/MasterData.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -470,6 +586,9 @@
       </provider>
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_1.sql" />
+=======
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_8.sql" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/repository/MasterDataDetailRepository.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -484,6 +603,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailDataService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1320">
@@ -495,16 +615,34 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2235">
           <caret line="175" column="28" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="28" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppMailDataController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="175" column="28" selection-start-line="175" selection-start-column="18" selection-end-line="175" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/hibernate_sequences">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/entity/MasterDataDetail.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="870">
+=======
+        <state relative-caret-position="60">
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
           <caret line="66" column="34" selection-start-line="66" selection-start-column="25" selection-end-line="66" selection-end-column="34" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="310">
@@ -519,11 +657,25 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
           <caret line="39" selection-start-line="39" selection-end-line="39" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/entity/MasterData.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="20" column="23" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/AppReceiveMail.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="123">
           <caret line="221" column="40" selection-start-line="221" selection-start-column="40" selection-end-line="221" selection-end-column="40" />
         </state>
@@ -544,6 +696,28 @@
       </provider>
     </entry>
     <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data">
+=======
+        <state relative-caret-position="342">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console_1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" lean-forward="true" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/service/AppMailServiceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="407" column="71" lean-forward="true" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data_detail">
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
@@ -552,15 +726,13 @@
     </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/console.sql">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="120">
           <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/master_data_detail">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
+=======
+        <state relative-caret-position="315">
+          <caret line="21" lean-forward="true" selection-end-line="21" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         </state>
       </provider>
     </entry>
@@ -568,6 +740,20 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="das://44a4a2ba-3ed2-4aa1-8b57-81be61732a3a/schema/springbd/table/customer_log">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/mail_project/controller/LineBotController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="97" column="108" selection-start-line="97" selection-start-column="108" selection-end-line="97" selection-end-column="108" />
+>>>>>>> e3fc5fc113b3bae81fae095b5accbbd3e402de59
         </state>
       </provider>
     </entry>

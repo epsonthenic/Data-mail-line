@@ -200,7 +200,7 @@ public class AppReceiveMail {
                 LOGGER.info("timestamp : "+String.valueOf(timestamp));
 
 
-                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"email\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\"}";
+                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\"}";
                 JsonList.add(json);
             }
 

@@ -204,7 +204,7 @@ public class AppReceiveNewMail {
 
                 Timestamp timestamp = new java.sql.Timestamp(mes.getSentDate().getTime());
 
-                json = "{\"sender\":\""+sender+"\",\"send_To\":\""+email_id+"\",\"email\":\""+emil+"\",\"msg\":\""+result+"\",\"attachments\":\""+attachFiles+"\",\"responsible\":\"----\",\"sentDate\":\""+timestamp.getTime()+"\",\"status\":\"wait..\",\"type\":\"email\",\"subject\":\""+mes.getSubject()+"\",\"CC\":\""+CC+"\",\"BCC\":\""+BCC+"\"}";
+                json = "{\"sender\":\""+sender+"\",\"send_To\":\""+email_id+"\",\"email\":\""+emil+"\",\"msg\":\""+result+"\",\"attachments\":\""+attachFiles+"\",\"responsible\":\"----\",\"sentDate\":\""+timestamp.getTime()+"\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\""+mes.getSubject()+"\",\"CC\":\""+CC+"\",\"BCC\":\""+BCC+"\"}";
 
                 JsonList.add(json);
             }

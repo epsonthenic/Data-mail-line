@@ -78,7 +78,7 @@ public class LineBotController {
             reply(replyToken, Arrays.asList(
                     new TextMessage("ระบบได้ทำการบันทึกแล้ว")
             ));
-            String json = "{\"sender\" : \"-\", \"send_To\" : \"SS\", \"subject\" : \"-\" , \"email\" : \"-\", \"msg\" : \""+text+"\", \"attachments\" : \"-\", \"responsible\" : \"-\", \"sentDate\" : \""+strDate+"\", \"status\" : \"wait\", \"type\" : \"LINE\", \"level\" : \"0\", \"CC\" : \"-\", \"BCC\" : \"-\", \"idline\" : \""+userId+"\"}";
+            String json = "{\"sender\" : \"-\", \"send_To\" : \"SS\", \"subject\" : \""+text+"\" , \"email\" : \"-\", \"msg\" : \""+text+"\", \"attachments\" : \"-\", \"responsible\" : \"-\", \"sentDate\" : \""+strDate+"\", \"status\" : \"wait..\", \"type\" : \"LINE\", \"level\" : \"0\", \"CC\" : \"-\", \"BCC\" : \"-\", \"idline\" : \""+userId+"\"}";
             //String json = "{ \"send_To\" : \"SS\",\"msg\" : \"" + text + "\" , \"sentDate\" : \""+strDate+"\",\"idline\":\""+ userId +"\",\"type\":\"LINE\",\"status\":\"wait\"}";
             appMailDataService.SaveByJsonCus(json);
             //appMailDataService.SaveByJsonCus(JsonList.get(i));
@@ -94,7 +94,7 @@ public class LineBotController {
                                 reply(replyToken, Arrays.asList(
                                         new TextMessage("ระบบได้ทำการบันทึกแล้ว")
                                 ));
-                                String json = "{\"sender\" : \"-\", \"send_To\" : \""+sender_Totext+"\", \"subject\" : \"-\" , \"email\" : \"-\", \"msg\" : \""+msgtext+"\", \"attachments\" : \"-\", \"responsible\" : \"-\", \"sentDate\" : \""+strDate+"\", \"status\" : \"wait\", \"type\" : \"LINE\", \"level\" : \"0\", \"CC\" : \"-\", \"BCC\" : \"-\", \"idline\" : \""+userId+"\"}";
+                                String json = "{\"sender\" : \"-\", \"send_To\" : \""+sender_Totext+"\", \"subject\" : \""+msgtext+"\" , \"email\" : \"-\", \"msg\" : \""+msgtext+"\", \"attachments\" : \"-\", \"responsible\" : \"-\", \"sentDate\" : \""+strDate+"\", \"status\" : \"wait..\", \"type\" : \"LINE\", \"level\" : \"0\", \"CC\" : \"-\", \"BCC\" : \"-\", \"idline\" : \""+userId+"\"}";
                                 //String json = "{\"sender\" : \" \" , \"send_To\" : \"" + sender_Totext + "\", \"subject\" : \"" + Subjecttext + "\" , \"email\":\"null\", \"msg\" : \"" + msgtext + "\" , \"sentDate\" : \"" + strDate + "\" , \"status\" : \"wait\" , \"type\" : \"LINE\" , \"level\":\"null\", \"idline\" : \"" + userId + "\"}";
                                 appMailDataService.SaveByJsonCus(json);
                             });

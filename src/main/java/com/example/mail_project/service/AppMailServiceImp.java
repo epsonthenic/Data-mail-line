@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -396,7 +397,8 @@ public class AppMailServiceImp implements AppMailDataService {
                                                        int maxResult) {
         LOGGER.info("####### findCustomerLogByCriteria : {}");
         /*...select * from customLog...*/
-        Criteria criteria = ((Session)em.getDelegate()).createCriteria(CustomerLog.class,"CustomerLog").setFirstResult(firstResult).setMaxResults(maxResult);
+        Criteria criteria = ((Session)em.getDelegate()).createCriteria(CustomerLog.class,"CustomerLog").setFirstResult(firstResult).setMaxResults(maxResult).addOrder(Order.desc("id"));
+        //SELECT * FROM customer_log order by id desc
         /*...where subject like %_%...*/
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
