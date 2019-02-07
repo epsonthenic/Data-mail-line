@@ -160,7 +160,10 @@ public class AppMailDataController {
     public List<MasterDataDetail>masterDatakey(@RequestParam ("id") Long id,@RequestParam ("code") String code){
         return appMailDataService.masterDatakey(id,code);
     }
-
+    @GetMapping("/getVariable1")
+    public List<MasterDataDetail>findByVariable1(@RequestParam ("id") Long id,@RequestParam ("code") String code){
+        return appMailDataService.findByVariable1(id,code);
+    }
     @GetMapping("/getkey")
     public List<MasterDataDetail>getAllmaster(){
         return appMailDataService.getAllmaster();

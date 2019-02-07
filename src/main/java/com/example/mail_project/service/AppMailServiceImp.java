@@ -183,7 +183,6 @@ public class AppMailServiceImp implements AppMailDataService {
         return customerLogRepository.findBySenderContainingAndSubjectContainingAndEmailContainingAndResponsibleContainingAndMsgContainingAndLevelContainingAndStatusContainingAndTypeContaining(sender,subject,email,responsible,msg,status,level,type);
     }
 
-
     @Override
     public List<CustomerLog> findBySenderAndType(String sender, String type) {
         return customerLogRepository.findBySenderContainingAndTypeContaining(sender, type);
@@ -634,6 +633,10 @@ public class AppMailServiceImp implements AppMailDataService {
         return null;
     }
 
+    @Override
+    public List<MasterDataDetail> findByVariable1(Long id, String code) {
+        return masterDataDetailRepository.findByVariable1(id, code);
+    }
 
     @Override
     public List<MasterDataDetail> masterDatakey(Long id, String code) {
@@ -770,7 +773,6 @@ public class AppMailServiceImp implements AppMailDataService {
 
         return criteria.list();
     }
-
 
     @Override
     public List<CustomerLog> findCustomerLogByCriteria(String sender,
@@ -937,6 +939,7 @@ public class AppMailServiceImp implements AppMailDataService {
             return false;
         }
     }
+
     public String RandomNumber(){
         String randomNumber;
         Random ran = new Random();
@@ -944,6 +947,7 @@ public class AppMailServiceImp implements AppMailDataService {
         randomNumber = Integer.toString(n);
         return randomNumber;
     }
+
     public String getTextFromMimeMultipart(Multipart mimeMultipart, int partcount) throws Exception {
         String result = "";
         String saveDirectory="/home/nick/File_mail";
