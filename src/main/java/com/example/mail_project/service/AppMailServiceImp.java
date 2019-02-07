@@ -51,10 +51,6 @@ public class AppMailServiceImp implements AppMailDataService {
 
     public static List<String> LIST_KEYWORD = new ArrayList<>();
     public static List<String> LIST_PROGRAM = new ArrayList<>();
-    public static List<String> LIST_LEVEL = new ArrayList<>();
-    public static List<String> LIST_STATUS = new ArrayList<>();
-    public static List<String> LIST_TYPE = new ArrayList<>();
-
 
     @PersistenceContext
   private EntityManager em;
@@ -215,6 +211,8 @@ public class AppMailServiceImp implements AppMailDataService {
 
     @Override
     public List<CustomerLog> receiveNewMail() {
+        String countlevelMax = "";
+        String countlevel = "";
         String email_id = "pingge12345678@gmail.com";
         String password = "E12345678";
 
@@ -316,7 +314,7 @@ public class AppMailServiceImp implements AppMailDataService {
 
                 String attachFiles = "";
                 String result="";
-                String saveDirectory = "/home/pang/File_mail";
+                String saveDirectory = "/home/nick/File_mail";
 
 
 
@@ -382,23 +380,77 @@ public class AppMailServiceImp implements AppMailDataService {
 
                 System.out.println("------------------------------------------------------------");
 
+                boolean hasText1 = result.contains("ด่วน");
+                boolean hasText2 = result.contains("ด่วนมาก");
+                List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+                int countresult = 0;
+                String[] resultKeyword = new String[100];
+                String[] keywordSplitList = new String[100];
+                for (String result1 : resultKeyword) {
+                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
+                    keywordSplitList = resultKeyword[countresult].split(",");
+                }
+                for (String level : keywordSplitList){
+//            LOGGER.info("level : {} : {}", level,num);
+                    countlevelMax = level;
+                }
+                int num = Integer.parseInt(countlevelMax) - 1;
+                countlevel = Integer.toString(num);
+                LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
 
-                CustomerLog customerLog = new CustomerLog();
-                customerLog.setSender(sender);
-                customerLog.setSend_To(email_id);
-                customerLog.setEmail(email);
-                customerLog.setMsg(result);
-                customerLog.setAttachments(attachFiles);
-                customerLog.setResponsible("----");
-                customerLog.setSentDate(mes.getSentDate());
-                customerLog.setStatus("wait..");
-                customerLog.setType("E-MAIL");
-                customerLog.setSubject(mes.getSubject());
-                customerLog.setCC(CC);
-                customerLog.setBCC(BCC);
-                customerLog.setMessageNum(mes.getMessageNumber());
-                customerLog.setLevel("0");
-                customerLogRepository.save(customerLog);
+
+                if ((hasText1 == true) && (hasText2 == false)) {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel(countlevel);
+                    customerLogRepository.save(customerLog);
+                } else if ((hasText2 == true) && (hasText1 == true)) {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel(countlevelMax);
+                    customerLogRepository.save(customerLog);
+                } else {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel("0");
+                    customerLogRepository.save(customerLog);
+                }
 
 
             }
@@ -514,7 +566,7 @@ public class AppMailServiceImp implements AppMailDataService {
 
                 String attachFiles = "";
                 String result = "";
-                String saveDirectory = "/home/pang/File_mail";
+                String saveDirectory = "/home/nick/File_mail";
 
                 //-----------------------------------------------------------------------------------//
                 //ตรวจว่า email มี content เป็น อะไร
@@ -575,26 +627,60 @@ public class AppMailServiceImp implements AppMailDataService {
                 System.out.println(attachFiles);
 
                 System.out.println("------------------------------------------------------------");
-
-
-
-                CustomerLog customerLog = new CustomerLog();
-                customerLog.setSender(sender);
-                customerLog.setSend_To(email_id);
-                customerLog.setEmail(email);
-                customerLog.setMsg(result);
-                customerLog.setAttachments(attachFiles);
-                customerLog.setResponsible("----");
-                customerLog.setSentDate(mes.getSentDate());
-                customerLog.setStatus("wait..");
-                customerLog.setType("E-MAIL");
-                customerLog.setSubject(mes.getSubject());
-                customerLog.setCC(CC);
-                customerLog.setBCC(BCC);
-                customerLog.setMessageNum(mes.getMessageNumber());
-                customerLog.setLevel("0");
-                customerLogRepository.save(customerLog);
-
+                boolean hasText1 = result.contains("ด่วน");
+                boolean hasText2 = result.contains("ด่วนมาก");
+                if ((hasText1 == true) && (hasText2 == false)) {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel("2");
+                    customerLogRepository.save(customerLog);
+                } else if ((hasText2 == true) && (hasText1 == true)) {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel("3");
+                    customerLogRepository.save(customerLog);
+                } else {
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setLevel("0");
+                    customerLogRepository.save(customerLog);
+                }
 //                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\",\"messageNum\":\""+mes.getMessageNumber()+"\"}";
 //                JsonList.add(json);
             }
@@ -630,13 +716,14 @@ public class AppMailServiceImp implements AppMailDataService {
                 for (String result : resultKeyword) {
                     resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
                     keywordSplitList = resultKeyword[countresult].split(",");
+//                    countresult++;
                 }
                 for (String progran : keywordSplitList){
                     LIST_PROGRAM.add(progran);
                 }
                 LOGGER.info("program : {}", LIST_PROGRAM);
             }
-            countKeyword = 0;
+//            countKeyword = 0;
             break;
             case "keyword.list" :{
                 LIST_KEYWORD = null;
@@ -644,60 +731,15 @@ public class AppMailServiceImp implements AppMailDataService {
                 for (String result : resultKeyword) {
                     resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
                     keywordSplitList = resultKeyword[countresult].split(",");
+//                    countresult++;
                 }
                 for (String keyword : keywordSplitList){
                     LIST_KEYWORD.add(keyword);
                 }
                 LOGGER.info("Keywor : {}", LIST_KEYWORD);
             }
-            countKeyword = 0;
+//            countKeyword = 0;
             break;
-
-
-            /////////////////////////////////////////////////////
-//            case "level.list" :{
-//                LIST_LEVEL = null;
-//                LIST_LEVEL =new ArrayList<>();
-//                for (String result : resultKeyword) {
-//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-//                    keywordSplitList = resultKeyword[countresult].split(",");
-//                }
-//                for (String keyword : keywordSplitList){
-//                    LIST_LEVEL.add(keyword);
-//                }
-//                LOGGER.info("level : {}", LIST_LEVEL);
-//            }
-//            countKeyword = 0;
-//            break;
-//            case "status.list" :{
-//                LIST_STATUS = null;
-//                LIST_STATUS =new ArrayList<>();
-//                for (String result : resultKeyword) {
-//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-//                    keywordSplitList = resultKeyword[countresult].split(",");
-//                }
-//                for (String keyword : keywordSplitList){
-//                    LIST_STATUS.add(keyword);
-//                }
-//                LOGGER.info("status : {}", LIST_STATUS);
-//            }
-//            countKeyword = 0;
-//            break;
-//            case "type.list" :{
-//                LIST_TYPE = null;
-//                LIST_TYPE =new ArrayList<>();
-//                for (String result : resultKeyword) {
-//                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-//                    keywordSplitList = resultKeyword[countresult].split(",");
-//                }
-//                for (String keyword : keywordSplitList){
-//                    LIST_TYPE.add(keyword);
-//                }
-//                LOGGER.info("type : {}", LIST_TYPE);
-//            }
-//            countKeyword = 0;
-//            break;
-            /////////////////////////////////////////////////////
             default :
                 LOGGER.info("countresult : {}", countresult++);
                 break;
@@ -967,7 +1009,7 @@ public class AppMailServiceImp implements AppMailDataService {
     }
     public String getTextFromMimeMultipart(Multipart mimeMultipart, int partcount) throws Exception {
         String result = "";
-        String saveDirectory="/home/pang/File_mail";
+        String saveDirectory="/home/nick/File_mail";
         String fileName = "";
         int partCount = mimeMultipart.getCount();
         for (int i = 0; i < partCount; i++) {
