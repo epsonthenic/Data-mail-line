@@ -268,155 +268,168 @@ public class AppMailServiceImp implements AppMailDataService {
 
             for (int i = 0; i <mess.length; i++) {
                 Message mes = mess[i];
+                if (!mes.getSubject().contains("Re:")) {
+                    System.out.println("Subject: " + mes.getSubject());
 
-                System.out.println("Subject: "+mes.getSubject());
+                    if (mes.isSet(Flags.Flag.FLAGGED)) {
+                        System.out.println("ติดดาว");
+                    }else{
+                        System.out.println("ไม่ติดดาว");
+                    }
+                    if (mes.isSet(Flags.Flag.ANSWERED)) {
+                        System.out.println("ตอบกลับแล้ว");
+                    }else{
+                        System.out.println("ยังไม่ตอบกลับ");
+                    }
 
-                String s = mes.getFrom()[0].toString();
+                    String s = mes.getFrom()[0].toString();
 
-                if (s.contains("=?UTF-8?B?")==true){
-                    base64_test b = new base64_test();
-                    s=b.decodeText(s);
+                    if (s.contains("=?UTF-8?B?") == true) {
+                        base64_test b = new base64_test();
+                        s = b.decodeText(s);
 
-                }else {
+                    } else {
 
-                }
-                System.out.println("From: "+s);
+                    }
+                    System.out.println("From: " + s);
 
-                String sender = c.splitWord2(s);
+                    String sender = c.splitWord2(s);
 
-                String email = c.splitWord1(s);
-
-
-                String CC ="",BCC="";
-
-                if(mes.getRecipients(Message.RecipientType.CC)==null){
-
-                }
-                else if(mes.getRecipients(Message.RecipientType.CC)!=null){
-                    Address cc = mes.getRecipients(Message.RecipientType.CC)[0];
-                    System.out.println("CC : "+cc.toString());
-                    CC = cc.toString();
-                }
-                if(mes.getRecipients(Message.RecipientType.BCC)==null){
-
-                }
-                else if(mes.getRecipients(Message.RecipientType.BCC)!=null){
-                    Address bcc = mes.getRecipients(Message.RecipientType.BCC)[0];
-                    System.out.println("BCC : "+bcc.toString());
-                    BCC = bcc.toString();
-                }
+                    String email = c.splitWord1(s);
 
 
-                System.out.println("Sent date: "+mes.getSentDate());
+                    String CC = "", BCC = "";
 
-                String contentType = mes.getContentType();
+                    if (mes.getRecipients(Message.RecipientType.CC) == null) {
 
-                String attachFiles = "";
-                String result="";
-                String saveDirectory = "/home/nick/File_mail";
+                    } else if (mes.getRecipients(Message.RecipientType.CC) != null) {
+                        Address cc = mes.getRecipients(Message.RecipientType.CC)[0];
+                        System.out.println("CC : " + cc.toString());
+                        CC = cc.toString();
+                    }
+                    if (mes.getRecipients(Message.RecipientType.BCC) == null) {
+
+                    } else if (mes.getRecipients(Message.RecipientType.BCC) != null) {
+                        Address bcc = mes.getRecipients(Message.RecipientType.BCC)[0];
+                        System.out.println("BCC : " + bcc.toString());
+                        BCC = bcc.toString();
+                    }
 
 
+                    System.out.println("Sent date: " + mes.getSentDate());
 
-                if (contentType.contains("multipart")) {// มีไฟล์ ATTACHMENT
-                    Multipart multiPart = (Multipart) mes.getContent();
-                    int numberOfParts = multiPart.getCount();
-                    //System.out.println(numberOfParts);
-                    for (int partCount = 0; partCount < numberOfParts; partCount++) {
-                        MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
-                        //messageContent = part.getContent().toString();
+                    String contentType = mes.getContentType();
 
-                        AppReceiveMail r = new AppReceiveMail();
-                        result = r.getTextFromMimeMultipart(multiPart,partCount);//
+                    String attachFiles = "";
+                    String result = "";
+                    String saveDirectory = "/home/nick/File_mail";
 
-                        if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+
+                    if (contentType.contains("multipart")) {// มีไฟล์ ATTACHMENT
+                        Multipart multiPart = (Multipart) mes.getContent();
+                        int numberOfParts = multiPart.getCount();
+                        //System.out.println(numberOfParts);
+                        for (int partCount = 0; partCount < numberOfParts; partCount++) {
+                            MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
                             //messageContent = part.getContent().toString();
-                            // this part is attachment
 
-                            String fileName = formatter.format(mes.getSentDate()) + "-"+RandomNumber()+"-"+ part.getFileName();//rename วันที่ + ชื่อไฟล์
-                            attachFiles += fileName + ", ";
-                            System.out.println("Attachments: " +attachFiles);
-                            part.saveFile(saveDirectory + File.separator + fileName);
+                            AppReceiveMail r = new AppReceiveMail();
+                            result = r.getTextFromMimeMultipart(multiPart, partCount);//
 
-                            System.out.println();
-                        }else {
-                            //messageContent = part.getContent().toString();
-                        }
-                        if(part.isMimeType("image/jpeg")||part.isMimeType("image/png")) {
+                            if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+                                //messageContent = part.getContent().toString();
+                                // this part is attachment
 
-                            System.out.print("image");
-                            String fileName = formatter.format(mes.getSentDate()) + "-"+RandomNumber()+"-"+ part.getFileName();
-                            System.out.println("["+fileName+"]");
+                                String fileName = formatter.format(mes.getSentDate()) + "-" + RandomNumber() + "-" + part.getFileName();//rename วันที่ + ชื่อไฟล์
+                                attachFiles += fileName + ", ";
+                                System.out.println("Attachments: " + attachFiles);
+                                part.saveFile(saveDirectory + File.separator + fileName);
 
-                            File f = new File(saveDirectory + File.separator + fileName);
-
-                            boolean check = new File(saveDirectory + File.separator,fileName).exists();
-                            // check directory มีไฟล์ชื่อนี้ไหม
-
-
-                            if(check==false){//ถ้าไม่มีไฟล์
-                                System.out.println("Download : "+fileName);
-                                part.saveFile(saveDirectory + File.separator + fileName);//ดาวน์โหลดไฟล์
-                                //base64_test base64 = new base64_test();// เข้ารหัส Base64
-                                //System.out.println("BASE64ENCODER : ["+base64.encoder(f.toString())+"]");
-
-                            }else if (check==true){ //มีไฟล์แล้ว
-                                System.out.println("Have this file");//แสดงข้อความ
+                                System.out.println();
+                            } else {
+                                //messageContent = part.getContent().toString();
                             }
+                            if (part.isMimeType("image/jpeg") || part.isMimeType("image/png")) {
 
+                                System.out.print("image");
+                                String fileName = formatter.format(mes.getSentDate()) + "-" + RandomNumber() + "-" + part.getFileName();
+                                System.out.println("[" + fileName + "]");
+
+                                File f = new File(saveDirectory + File.separator + fileName);
+
+                                boolean check = new File(saveDirectory + File.separator, fileName).exists();
+                                // check directory มีไฟล์ชื่อนี้ไหม
+
+
+                                if (check == false) {//ถ้าไม่มีไฟล์
+                                    System.out.println("Download : " + fileName);
+                                    part.saveFile(saveDirectory + File.separator + fileName);//ดาวน์โหลดไฟล์
+                                    //base64_test base64 = new base64_test();// เข้ารหัส Base64
+                                    //System.out.println("BASE64ENCODER : ["+base64.encoder(f.toString())+"]");
+
+                                } else if (check == true) { //มีไฟล์แล้ว
+                                    System.out.println("Have this file");//แสดงข้อความ
+                                }
+
+                            }
+                        }
+                        if (attachFiles.length() > 1) {
+                            attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
                         }
                     }
-                    if (attachFiles.length() > 1) {
-                        attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+                    System.out.println("Content : " + result);
+                    boolean checkL = result.contains("Chitsanu");
+                    if (checkL == true) {
+                        System.out.println("Hello Chitsanu!");
                     }
-                }
-                System.out.println("Content : "+result);
-                boolean checkL = result.contains("Chitsanu");
-                if(checkL==true){
-                    System.out.println("Hello Chitsanu!");
-                }
 
-                System.out.println(attachFiles);
+                    System.out.println(attachFiles);
 
-                System.out.println("------------------------------------------------------------");
+                    System.out.println("------------------------------------------------------------");
 
-                boolean hasText1 = result.contains("ด่วน");
-                boolean hasText2 = result.contains("ด่วนมาก");
-                List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
-                LOGGER.info("Conten : {}",listKeyword.size());
-                String resultKeyword = "";
-                List<String> keywordSplitList = null;
+                    LOGGER.info("Message : {}", result);
+                    boolean hasText1 = result.contains("ด่วน");
+                    boolean hasText2 = result.contains("ด่วนมาก");
+                    List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+                    LOGGER.info("Conten : {}",listKeyword.size());
+                    String resultKeyword = "";
+                    List<String> keywordSplitList = null;
                     resultKeyword = listKeyword.get(0).getVariable1();
                     keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
-                countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
-                int num = Integer.parseInt(countlevelMax) - 1;
-                countlevel = Integer.toString(num);
-                LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
-                CustomerLog customerLog = new CustomerLog();
-                customerLog.setSender(sender);
-                customerLog.setSend_To(email_id);
-                customerLog.setEmail(email);
-                customerLog.setMsg(result);
-                customerLog.setAttachments(attachFiles);
-                customerLog.setResponsible("----");
-                customerLog.setSentDate(mes.getSentDate());
-                customerLog.setStatus("wait..");
-                customerLog.setType("E-MAIL");
-                customerLog.setSubject(mes.getSubject());
-                customerLog.setCC(CC);
-                customerLog.setBCC(BCC);
-                customerLog.setMessageNum(mes.getMessageNumber());
+                    countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
+                    int num = Integer.parseInt(countlevelMax) - 1;
+                    countlevel = Integer.toString(num);
+                    LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
 
-                if ((hasText1 == true) && (hasText2 == false)) {
-                    customerLog.setLevel(countlevel);
-                    customerLogRepository.save(customerLog);
-                } else if ((hasText2 == true) && (hasText1 == true)) {
-                    customerLog.setLevel(countlevelMax);
-                    customerLogRepository.save(customerLog);
-                } else {
-                    customerLog.setLevel("0");
-                    customerLogRepository.save(customerLog);
+                    if ((hasText1 == true) && (hasText2 == false)) {
+                        customerLog.setLevel(countlevel);
+                        customerLogRepository.save(customerLog);
+                    } else if ((hasText2 == true) && (hasText1 == true)) {
+                        customerLog.setLevel(countlevelMax);
+                        customerLogRepository.save(customerLog);
+                    } else {
+                        customerLog.setLevel("0");
+                        customerLogRepository.save(customerLog);
+                    }
+
                 }
             }
+            //appMailDataService.SaveByJsonCus(json);
+
             folder.close(true);
             properties.clear();
             store.close();
@@ -434,6 +447,8 @@ public class AppMailServiceImp implements AppMailDataService {
 
     @Override
     public List<CustomerLog> receiveMail() {
+        String countlevelMax = "";
+        String countlevel = "";
         String email_id = "pingge12345678@gmail.com";
         String password = "E12345678";
 
@@ -482,142 +497,167 @@ public class AppMailServiceImp implements AppMailDataService {
 
             for (int i = 0; i < messageCount; i++) {
                 Message mes = messages[i];
-                System.out.println("Subject: " + mes.getSubject());
+                if (!mes.getSubject().contains("Re:")) {
+                    System.out.println("Subject: " + mes.getSubject());
 
-                String sendFrom = mes.getFrom()[0].toString();
-
-                if (sendFrom.contains("=?UTF-8?B?") == true) {
-                    base64_test b = new base64_test();
-                    sendFrom = b.decodeText(sendFrom);
-
-                } else {
-
-                }
-                System.out.println("From: " + sendFrom);
-
-                //ใช้ Class CheckThisMail Method splitWord
-                String sender = c.splitWord2(sendFrom);
-
-                String email = c.splitWord1(sendFrom);
+                    if (mes.isSet(Flags.Flag.FLAGGED)) {
+                        System.out.println("ติดดาว");
+                    }else{
+                        System.out.println("ไม่ติดดาว");
+                    }
+                    if (mes.isSet(Flags.Flag.ANSWERED)) {
+                        System.out.println("ตอบกลับแล้ว");
+                    }else{
+                        System.out.println("ยังไม่ตอบกลับ");
+                    }
 
 
-                String CC = "", BCC = "";
-
-                //ตรวจว่ามี CC ใน Email หรือไม่
-                if (mes.getRecipients(Message.RecipientType.CC) == null) {
-                    //ถ้าไม่มี
-                } else if (mes.getRecipients(Message.RecipientType.CC) != null) {
-                    //ถ้ามี
-                    Address cc = mes.getRecipients(Message.RecipientType.CC)[0];
-                    System.out.println("CC : " + cc.toString());
-                    CC = cc.toString();//แปลงเป็น String
-                }
-                if (mes.getRecipients(Message.RecipientType.BCC) == null) {//ตรวจว่ามี BCC หรือไม่
-                    //ถ้าไม่มี
-                } else if (mes.getRecipients(Message.RecipientType.BCC) != null) {//ถ้ามี
-                    Address bcc = mes.getRecipients(Message.RecipientType.BCC)[0];
-                    System.out.println("BCC : " + bcc.toString());
-                    BCC = bcc.toString();
-                }
+                    String sendFrom = mes.getFrom()[0].toString();
 
 
-                System.out.println("Sent date: " + mes.getSentDate());
+                    if (sendFrom.contains("=?UTF-8?B?") == true) {
+                        base64_test b = new base64_test();
+                        sendFrom = b.decodeText(sendFrom);
 
-                String contentType = mes.getContentType();
+                    } else {
 
-                String attachFiles = "";
-                String result = "";
-                String saveDirectory = "/home/nick/File_mail";
+                    }
+                    System.out.println("From: " + sendFrom);
 
-                //-----------------------------------------------------------------------------------//
-                //ตรวจว่า email มี content เป็น อะไร
-                if (contentType.contains("multipart")) {// มีไฟล์ ATTACHMENT
-                    Multipart multiPart = (Multipart) mes.getContent();//แปลง
-                    int numberOfParts = multiPart.getCount();//สร้างจำนวน Part
+                    //ใช้ Class CheckThisMail Method splitWord
+                    String sender = c.splitWord2(sendFrom);
 
-                    for (int partCount = 0; partCount < numberOfParts; partCount++) {
-                        MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
+                    String email = c.splitWord1(sendFrom);
 
-                        //ใช้ Method getTextFromMimeMultipart
-                        result = getTextFromMimeMultipart(multiPart, partCount);//เอาข้อความจาก email ออกมา
-                        //part ที่มีไฟล์ attachment
-                        if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
 
-                            String fileNameDate=formatter.format(mes.getSentDate());
-                            String fileName = fileNameDate+ "-"+RandomNumber()+"-"+ part.getFileName();//rename วันที่ + ชื่อไฟล์
-                            attachFiles += fileName + ", ";
-                            System.out.println("Attachments: " + attachFiles);
-                            part.saveFile(saveDirectory + File.separator + fileName);//save file
-                            System.out.println();
-                        } else {
+                    String CC = "", BCC = "";
 
-                        }
-                        //part ที่เป็นประเภท jpeg หรือ png
-                        if (part.isMimeType("image/jpeg") || part.isMimeType("image/png")) {
+                    //ตรวจว่ามี CC ใน Email หรือไม่
+                    if (mes.getRecipients(Message.RecipientType.CC) == null) {
+                        //ถ้าไม่มี
+                    } else if (mes.getRecipients(Message.RecipientType.CC) != null) {
+                        //ถ้ามี
+                        Address cc = mes.getRecipients(Message.RecipientType.CC)[0];
+                        System.out.println("CC : " + cc.toString());
+                        CC = cc.toString();//แปลงเป็น String
+                    }
+                    if (mes.getRecipients(Message.RecipientType.BCC) == null) {//ตรวจว่ามี BCC หรือไม่
+                        //ถ้าไม่มี
+                    } else if (mes.getRecipients(Message.RecipientType.BCC) != null) {//ถ้ามี
+                        Address bcc = mes.getRecipients(Message.RecipientType.BCC)[0];
+                        System.out.println("BCC : " + bcc.toString());
+                        BCC = bcc.toString();
+                    }
 
-                            System.out.print("image");
-                            String fileNameDate=formatter.format(mes.getSentDate());
-                            String fileName = fileNameDate + "-"+RandomNumber()+"-"+ part.getFileName();
-                            System.out.println("[" + fileName + "]");
-                            attachFiles += fileName + ", ";
-                            File f = new File(saveDirectory + File.separator + fileName);
 
-                            boolean check = new File(saveDirectory + File.separator, fileName).exists();
-                            // check directory มีไฟล์ชื่อนี้ไหม
-                            if (check == false) {//ถ้าไม่มีไฟล์
-                                System.out.println("Download : " + fileName);
-                                part.saveFile(saveDirectory + File.separator + fileName);//ดาวน์โหลดไฟล์
+                    System.out.println("Sent date: " + mes.getSentDate());
 
-                            } else if (check == true) { //มีไฟล์แล้ว
-                                System.out.println("Have this file");//แสดงข้อความ
+                    String contentType = mes.getContentType();
+
+                    String attachFiles = "";
+                    String result = "";
+                    String saveDirectory = "/home/nick/File_mail";
+
+                    //-----------------------------------------------------------------------------------//
+                    //ตรวจว่า email มี content เป็น อะไร
+                    if (contentType.contains("multipart")) {// มีไฟล์ ATTACHMENT
+                        Multipart multiPart = (Multipart) mes.getContent();//แปลง
+                        int numberOfParts = multiPart.getCount();//สร้างจำนวน Part
+
+                        for (int partCount = 0; partCount < numberOfParts; partCount++) {
+                            MimeBodyPart part = (MimeBodyPart) multiPart.getBodyPart(partCount);
+
+                            //ใช้ Method getTextFromMimeMultipart
+                            result = getTextFromMimeMultipart(multiPart, partCount);//เอาข้อความจาก email ออกมา
+                            //part ที่มีไฟล์ attachment
+                            if (Part.ATTACHMENT.equalsIgnoreCase(part.getDisposition())) {
+
+                                String fileNameDate = formatter.format(mes.getSentDate());
+                                String fileName = fileNameDate + "-" + RandomNumber() + "-" + part.getFileName();//rename วันที่ + ชื่อไฟล์
+                                attachFiles += fileName + ", ";
+                                System.out.println("Attachments: " + attachFiles);
+                                part.saveFile(saveDirectory + File.separator + fileName);//save file
+                                System.out.println();
+                            } else {
+
+                            }
+                            //part ที่เป็นประเภท jpeg หรือ png
+                            if (part.isMimeType("image/jpeg") || part.isMimeType("image/png")) {
+
+                                System.out.print("image");
+                                String fileNameDate = formatter.format(mes.getSentDate());
+                                String fileName = fileNameDate + "-" + RandomNumber() + "-" + part.getFileName();
+                                System.out.println("[" + fileName + "]");
+                                attachFiles += fileName + ", ";
+                                File f = new File(saveDirectory + File.separator + fileName);
+
+                                boolean check = new File(saveDirectory + File.separator, fileName).exists();
+                                // check directory มีไฟล์ชื่อนี้ไหม
+                                if (check == false) {//ถ้าไม่มีไฟล์
+                                    System.out.println("Download : " + fileName);
+                                    part.saveFile(saveDirectory + File.separator + fileName);//ดาวน์โหลดไฟล์
+
+                                } else if (check == true) { //มีไฟล์แล้ว
+                                    System.out.println("Have this file");//แสดงข้อความ
+                                }
                             }
                         }
+                        //ตรวจว่ามี attachFiles มากกว่า 1 หรือไม่
+                        if (attachFiles.length() > 1) {
+                            attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+                        }
                     }
-                    //ตรวจว่ามี attachFiles มากกว่า 1 หรือไม่
-                    if (attachFiles.length() > 1) {
-                        attachFiles = attachFiles.substring(0, attachFiles.length() - 2);
+
+                    //-----------------------------------------------------------------------------------//
+                    System.out.println("Content : " + result);
+
+
+                    System.out.println(attachFiles);
+
+                    System.out.println("------------------------------------------------------------");
+
+                    LOGGER.info("Message : {}", result);
+                    boolean hasText1 = result.contains("ด่วน");
+                    boolean hasText2 = result.contains("ด่วนมาก");
+                    List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+                    LOGGER.info("Conten : {}",listKeyword.size());
+                    String resultKeyword = "";
+                    List<String> keywordSplitList = null;
+                    resultKeyword = listKeyword.get(0).getVariable1();
+                    keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+                    countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
+                    int num = Integer.parseInt(countlevelMax) - 1;
+                    countlevel = Integer.toString(num);
+                    LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
+                    CustomerLog customerLog = new CustomerLog();
+                    customerLog.setSender(sender);
+                    customerLog.setSend_To(email_id);
+                    customerLog.setEmail(email);
+                    customerLog.setMsg(result);
+                    customerLog.setAttachments(attachFiles);
+                    customerLog.setResponsible("----");
+                    customerLog.setSentDate(mes.getSentDate());
+                    customerLog.setStatus("wait..");
+                    customerLog.setType("E-MAIL");
+                    customerLog.setSubject(mes.getSubject());
+                    customerLog.setCC(CC);
+                    customerLog.setBCC(BCC);
+                    customerLog.setMessageNum(mes.getMessageNumber());
+
+                    if ((hasText1 == true) && (hasText2 == false)) {
+                        customerLog.setLevel("2");
+                        customerLogRepository.save(customerLog);
+                    } else if ((hasText2 == true) && (hasText1 == true)) {
+                        customerLog.setLevel("3");
+                        customerLogRepository.save(customerLog);
+                    } else {
+                        customerLog.setLevel("0");
+                        customerLogRepository.save(customerLog);
                     }
-                }
-                //-----------------------------------------------------------------------------------//
-                System.out.println("Content : " + result);
-                boolean checkL = result.contains("Chitsanu");
-                if (checkL == true) {
-                    System.out.println("Hello Chitsanu!");
-                }
-
-                System.out.println(attachFiles);
-
-                System.out.println("------------------------------------------------------------");
-                boolean hasText1 = result.contains("ด่วน");
-                boolean hasText2 = result.contains("ด่วนมาก");
-                CustomerLog customerLog = new CustomerLog();
-                customerLog.setSender(sender);
-                customerLog.setSend_To(email_id);
-                customerLog.setEmail(email);
-                customerLog.setMsg(result);
-                customerLog.setAttachments(attachFiles);
-                customerLog.setResponsible("----");
-                customerLog.setSentDate(mes.getSentDate());
-                customerLog.setStatus("wait..");
-                customerLog.setType("E-MAIL");
-                customerLog.setSubject(mes.getSubject());
-                customerLog.setCC(CC);
-                customerLog.setBCC(BCC);
-                customerLog.setMessageNum(mes.getMessageNumber());
-
-                if ((hasText1 == true) && (hasText2 == false)) {
-                    customerLog.setLevel("2");
-                    customerLogRepository.save(customerLog);
-                } else if ((hasText2 == true) && (hasText1 == true)) {
-                    customerLog.setLevel("3");
-                    customerLogRepository.save(customerLog);
-                } else {
-                    customerLog.setLevel("0");
-                    customerLogRepository.save(customerLog);
-                }
 //                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\",\"messageNum\":\""+mes.getMessageNumber()+"\"}";
 //                JsonList.add(json);
-            }
+                }//end if
+            }//end loop
 
 
 

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.Properties;
 
 public class replyMessage {
-    public void reply(int messageNum){
+    public void reply(int messageNum,Long id){
         try {
             String host = "pop.gmail.com";
             String user = "pingge12345678@gmail.com";
@@ -51,37 +51,43 @@ public class replyMessage {
             Message mes[] = inbox.getMessages();
 
             int i = messageNum-1;
-                Message mess = mes[i];
-                System.out.println("IS SEEN : " + mes[i].isSet(Flag.SEEN));
-                System.out.println("------------ Message " + (i + 1) + " ------------");
-                System.out.println("SentDate : " + mess.getSentDate());
-                System.out.println("From : " + mess.getFrom()[0]);
-                System.out.println("Subject : " + mess.getSubject());
+            Message mess = mes[i];
+            System.out.println("IS SEEN : " + mes[i].isSet(Flag.SEEN));
+            System.out.println("------------ Message " + (i + 1) + " ------------");
+            System.out.println("SentDate : " + mess.getSentDate());
+            System.out.println("From : " + mess.getFrom()[0]);
+            System.out.println("Subject : " + mess.getSubject());
+
+            if (mes[i].isSet(Flags.Flag.FLAGGED)) {
+                System.out.println("ติดดาว");
+            }else{
+                System.out.println("ไม่ติดดาว");
+                mes[i].setFlag(Flag.FLAGGED,true);
+            }
 
 
-                //set autoReply
-                mes[i].setFlag(Flag.SEEN, true);
-                Message replyMessage = new MimeMessage(session);
-                replyMessage = (MimeMessage) mess.reply(false);
-                replyMessage.setText("Thanks you. Test Auto Reply.");//ตั้งค่าข้อความที่จะ reply
-                replyMessage.setReplyTo(mess.getReplyTo());
+            mes[i].setFlag(Flag.SEEN, true);
+            Message replyMessage = new MimeMessage(session);
+            replyMessage = (MimeMessage) mess.reply(false);
+            replyMessage.setText("ทำการรับเรื่องเรียบร้อยแล้ว.");//ตั้งค่าข้อความที่จะ reply
+            replyMessage.setReplyTo(mess.getReplyTo());
+            replyMessage.setSubject("RE:[#"+id+"]"+mess.getSubject());
 
-                System.out.println("No : "+mess.getMessageNumber());
+            System.out.println("No : "+mess.getMessageNumber());
 
+            //reply
+            Transport t = session.getTransport("smtp");
+            try {
+                t.connect(host,user, password);
+                System.out.println("connected...");
+                t.sendMessage(replyMessage,replyMessage.getAllRecipients());
 
-                //reply
-                Transport t = session.getTransport("smtp");
-                try {
-                    t.connect(host,user, password);
-                    System.out.println("connected...");
-                    t.sendMessage(replyMessage,replyMessage.getAllRecipients());
-
-                }catch (Exception ex){
-                    System.out.println("Error------------>"+ex.getMessage());
-                }finally {
-                    t.close();
-                }
-                System.out.println("message replied successfully ....");
+            }catch (Exception ex){
+                System.out.println("Error------------>"+ex.getMessage());
+            }finally {
+                t.close();
+            }
+            System.out.println("message replied successfully ....");
 
             store.close();
 

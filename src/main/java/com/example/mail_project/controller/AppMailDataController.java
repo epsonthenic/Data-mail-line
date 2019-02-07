@@ -46,9 +46,9 @@ public class AppMailDataController {
         return appMailDataService.receiveNewMail();
     }
     @GetMapping("/getReply")
-    public void replyMessage(@RequestParam ("messageNum")int messageNum){
+    public void replyMessage(@RequestParam ("messageNum")int messageNum,@RequestParam ("id")Long id){
         replyMessage r = new replyMessage();
-        r.reply(messageNum);
+        r.reply(messageNum,id);
     }
 
     @PostMapping("/savebyjson")
