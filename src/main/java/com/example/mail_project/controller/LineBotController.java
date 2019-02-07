@@ -82,21 +82,29 @@ public class LineBotController {
         boolean hasText = text.contains("@");
         boolean hasText1 = text.contains("ด่วน");
         boolean hasText2 = text.contains("ด่วนมาก");
-        List<MasterDataDetail> listKeyword = appMailDataController.masterDatakey(new Long("200"), "level.list");
-        int countresult = 0;
-        String[] resultKeyword = new String[100];
-        String[] keywordSplitList = new String[100];
-        for (String result : resultKeyword) {
-            resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-            keywordSplitList = resultKeyword[countresult].split(",");
-        }
-        for (String level : keywordSplitList){
-//            LOGGER.info("level : {} : {}", level,num);
-            countlevelMax = level;
-        }
-        int result = Integer.parseInt(countlevelMax) - 1;
-        countlevel = Integer.toString(result);
+        List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+        String resultKeyword = "";
+        List<String> keywordSplitList = null;
+        resultKeyword = listKeyword.get(0).getVariable1();
+        keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+        countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
+        int num = Integer.parseInt(countlevelMax) - 1;
+        countlevel = Integer.toString(num);
         LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
+//        int countresult = 0;
+//        String[] resultKeyword = new String[100];
+//        String[] keywordSplitList = new String[100];
+//        for (String result : resultKeyword) {
+//            resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
+//            keywordSplitList = resultKeyword[countresult].split(",");
+//        }
+//        for (String level : keywordSplitList){
+////            LOGGER.info("level : {} : {}", level,num);
+//            countlevelMax = level;
+//        }
+//        int result = Integer.parseInt(countlevelMax) - 1;
+//        countlevel = Integer.toString(result);
+//        LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
         String pattern = "(@*+\\S+)(.*)";
         Pattern r = Pattern.compile(pattern);
         Matcher m = r.matcher(text);

@@ -21,7 +21,7 @@ ON MASTER_DATA .ID  = MASTER_DATA_DETAIL .MASTERDATA
 where MASTER_DATA .ID = '100' AND MASTER_DATA_DETAIL.CODE LIKE 'progran.list'
   */
 
-    @Query("SELECT DISTINCT a.variable1 FROM MasterData b LEFT JOIN MasterDataDetail a ON b.id  = a.masterdata where b.id = :id and a.code like concat(:code)")
+    @Query("SELECT DISTINCT a FROM MasterData b LEFT JOIN MasterDataDetail a ON b.id  = a.masterdata where b.id = :id and a.code like concat(:code)")
     List<MasterDataDetail> findMasterDataDetailsByIdEquals(@Param("id") Long id, @Param("code") String code);
 
 }

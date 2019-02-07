@@ -160,6 +160,11 @@ public class AppMailDataController {
     public List<MasterDataDetail>masterDatakey(@RequestParam ("id") Long id,@RequestParam ("code") String code){
         return appMailDataService.masterDatakey(id,code);
     }
+
+    @GetMapping("/getkey")
+    public List<MasterDataDetail>getAllmaster(){
+        return appMailDataService.getAllmaster();
+    }
     @GetMapping("/getFindCriteria")
     public ResponseEntity<String> findByCriteria(@RequestParam ("sender")String sender,@RequestParam("subject")String subject,
                                             @RequestParam ("email")String email,@RequestParam ("msg")String msg,

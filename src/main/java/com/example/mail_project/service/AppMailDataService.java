@@ -64,6 +64,8 @@ public interface AppMailDataService {
 
     List<MasterDataDetail> masterDatakey(Long id,String code);
 
+    List<MasterDataDetail> getAllmaster();
+
     //ResponseEntity<String> seveLineTextToEmail(String jsonn);
 
     //ResponseEntity<String> seveLineImgToEmail(String jsonn);

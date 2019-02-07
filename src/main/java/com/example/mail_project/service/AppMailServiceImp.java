@@ -383,17 +383,13 @@ public class AppMailServiceImp implements AppMailDataService {
                 boolean hasText1 = result.contains("ด่วน");
                 boolean hasText2 = result.contains("ด่วนมาก");
                 List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+                LOGGER.info("Conten : {}",listKeyword.size());
                 int countresult = 0;
-                String[] resultKeyword = new String[100];
-                String[] keywordSplitList = new String[100];
-                for (String result1 : resultKeyword) {
-                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-                    keywordSplitList = resultKeyword[countresult].split(",");
-                }
-                for (String level : keywordSplitList){
-//            LOGGER.info("level : {} : {}", level,num);
-                    countlevelMax = level;
-                }
+                String resultKeyword = "";
+                List<String> keywordSplitList = null;
+                    resultKeyword = listKeyword.get(0).getVariable1();
+                    keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+                countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
                 int num = Integer.parseInt(countlevelMax) - 1;
                 countlevel = Integer.toString(num);
                 LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
@@ -703,21 +699,20 @@ public class AppMailServiceImp implements AppMailDataService {
     @Override
     public List<MasterDataDetail> masterDatakey(Long id, String code) {
         List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(id, code);
+        LOGGER.info("listKeyword : {}", listKeyword.size());
         int countresult = 0;
         int countKeyword = 0;
-        String[] resultKeyword = new String[100];
-        String[] keywordSplitList = new String[100];
-
+        String resultKeyword = "";
+        List<String> keywordSplitList = null;
+        resultKeyword = listKeyword.get(0).getVariable1();
+        LOGGER.info("num : {}", resultKeyword);
         switch(code)
         {
             case "program.list" :{
                 LIST_PROGRAM = null;
                 LIST_PROGRAM =new ArrayList<>();
-                for (String result : resultKeyword) {
-                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-                    keywordSplitList = resultKeyword[countresult].split(",");
-//                    countresult++;
-                }
+                keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+                LOGGER.info("program.list : {}", keywordSplitList);
                 for (String progran : keywordSplitList){
                     LIST_PROGRAM.add(progran);
                 }
@@ -728,11 +723,8 @@ public class AppMailServiceImp implements AppMailDataService {
             case "keyword.list" :{
                 LIST_KEYWORD = null;
                 LIST_KEYWORD =new ArrayList<>();
-                for (String result : resultKeyword) {
-                    resultKeyword[countresult] = String.valueOf(listKeyword.get(countresult));
-                    keywordSplitList = resultKeyword[countresult].split(",");
-//                    countresult++;
-                }
+                keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+                LOGGER.info("Keywor.list : {}", keywordSplitList);
                 for (String keyword : keywordSplitList){
                     LIST_KEYWORD.add(keyword);
                 }
@@ -746,7 +738,8 @@ public class AppMailServiceImp implements AppMailDataService {
         }
         LOGGER.info("Keywor : {}", LIST_KEYWORD);
         LOGGER.info("program : {}", LIST_PROGRAM);
-        return masterDataDetailRepository.findMasterDataDetailsByIdEquals(id, code);
+//        return masterDataDetailRepository.findMasterDataDetailsByIdEquals(id, code);
+        return null;
     }
 
     @Override
@@ -976,6 +969,11 @@ public class AppMailServiceImp implements AppMailDataService {
 
 
         return criteria.list();
+    }
+
+    @Override
+    public List<MasterDataDetail> getAllmaster() {
+        return masterDataDetailRepository.findAll();
     }
 
     public static boolean checkTextMatches(String str) {
