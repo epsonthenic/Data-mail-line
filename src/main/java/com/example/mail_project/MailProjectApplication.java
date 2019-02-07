@@ -28,7 +28,7 @@ public class MailProjectApplication {
 
         Logger LOGGER = LoggerFactory.getLogger(MailProjectApplication.class);
         //downloadedContentDir = Files.createTempDirectory("line-bot");// รับส่งรูปภาพ------------------------
-        downloadedContentDir = FileSystems.getDefault().getPath("/home/pang/File_Line/");
+        downloadedContentDir = FileSystems.getDefault().getPath("/home/nick/File_Line/");
         LOGGER.info("LOGGER :{}", downloadedContentDir);
         SpringApplication.run(MailProjectApplication.class, args);
 

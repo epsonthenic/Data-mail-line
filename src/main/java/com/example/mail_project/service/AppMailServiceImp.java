@@ -384,7 +384,6 @@ public class AppMailServiceImp implements AppMailDataService {
                 boolean hasText2 = result.contains("ด่วนมาก");
                 List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
                 LOGGER.info("Conten : {}",listKeyword.size());
-                int countresult = 0;
                 String resultKeyword = "";
                 List<String> keywordSplitList = null;
                     resultKeyword = listKeyword.get(0).getVariable1();
@@ -393,65 +392,32 @@ public class AppMailServiceImp implements AppMailDataService {
                 int num = Integer.parseInt(countlevelMax) - 1;
                 countlevel = Integer.toString(num);
                 LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
-
+                CustomerLog customerLog = new CustomerLog();
+                customerLog.setSender(sender);
+                customerLog.setSend_To(email_id);
+                customerLog.setEmail(email);
+                customerLog.setMsg(result);
+                customerLog.setAttachments(attachFiles);
+                customerLog.setResponsible("----");
+                customerLog.setSentDate(mes.getSentDate());
+                customerLog.setStatus("wait..");
+                customerLog.setType("E-MAIL");
+                customerLog.setSubject(mes.getSubject());
+                customerLog.setCC(CC);
+                customerLog.setBCC(BCC);
+                customerLog.setMessageNum(mes.getMessageNumber());
 
                 if ((hasText1 == true) && (hasText2 == false)) {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel(countlevel);
                     customerLogRepository.save(customerLog);
                 } else if ((hasText2 == true) && (hasText1 == true)) {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel(countlevelMax);
                     customerLogRepository.save(customerLog);
                 } else {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel("0");
                     customerLogRepository.save(customerLog);
                 }
-
-
             }
-            //appMailDataService.SaveByJsonCus(json);
-
             folder.close(true);
             properties.clear();
             store.close();
@@ -625,55 +591,28 @@ public class AppMailServiceImp implements AppMailDataService {
                 System.out.println("------------------------------------------------------------");
                 boolean hasText1 = result.contains("ด่วน");
                 boolean hasText2 = result.contains("ด่วนมาก");
+                CustomerLog customerLog = new CustomerLog();
+                customerLog.setSender(sender);
+                customerLog.setSend_To(email_id);
+                customerLog.setEmail(email);
+                customerLog.setMsg(result);
+                customerLog.setAttachments(attachFiles);
+                customerLog.setResponsible("----");
+                customerLog.setSentDate(mes.getSentDate());
+                customerLog.setStatus("wait..");
+                customerLog.setType("E-MAIL");
+                customerLog.setSubject(mes.getSubject());
+                customerLog.setCC(CC);
+                customerLog.setBCC(BCC);
+                customerLog.setMessageNum(mes.getMessageNumber());
+
                 if ((hasText1 == true) && (hasText2 == false)) {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel("2");
                     customerLogRepository.save(customerLog);
                 } else if ((hasText2 == true) && (hasText1 == true)) {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel("3");
                     customerLogRepository.save(customerLog);
                 } else {
-                    CustomerLog customerLog = new CustomerLog();
-                    customerLog.setSender(sender);
-                    customerLog.setSend_To(email_id);
-                    customerLog.setEmail(email);
-                    customerLog.setMsg(result);
-                    customerLog.setAttachments(attachFiles);
-                    customerLog.setResponsible("----");
-                    customerLog.setSentDate(mes.getSentDate());
-                    customerLog.setStatus("wait..");
-                    customerLog.setType("E-MAIL");
-                    customerLog.setSubject(mes.getSubject());
-                    customerLog.setCC(CC);
-                    customerLog.setBCC(BCC);
-                    customerLog.setMessageNum(mes.getMessageNumber());
                     customerLog.setLevel("0");
                     customerLogRepository.save(customerLog);
                 }
