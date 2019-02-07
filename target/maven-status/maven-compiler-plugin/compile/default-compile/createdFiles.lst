@@ -10,6 +10,7 @@ com/example/mail_project/entity/CustomerLog.class
 com/example/mail_project/entity/MasterDataDetail.class
 com/example/mail_project/controller/LineBotController.class
 com/example/mail_project/controller/AppReceiveNewMail.class
+com/example/mail_project/controller/replyMessage.class
 com/example/mail_project/entity/LineDataImg.class
 com/example/mail_project/controller/LineBotController$DownloadedContent.class
 com/example/mail_project/controller/AppReceiveMail.class

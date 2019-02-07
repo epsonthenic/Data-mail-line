@@ -22,8 +22,8 @@ public class CheckThisEmail {
             //autoReply2 a = new autoReply2();
             //a.autoReply();
 
-        AppReceiveMail app = new AppReceiveMail();
-        app.receiveMail().get(1);
+//        AppReceiveMail app = new AppReceiveMail();
+//        app.receiveMail().get(1);
 
 
         //String json = "{\"sender\":\"Chisanu\",\"send_To\":\"20\"}";

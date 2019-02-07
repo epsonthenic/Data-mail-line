@@ -39,35 +39,18 @@ public class AppMailDataController {
     }
     @GetMapping("/getCustomerData")
     public List<CustomerLog> getAppCusData(){
-        AppReceiveMail app = new AppReceiveMail();
-        List<String> JsonList = new LinkedList<String>();
-        JsonList = app.receiveMail();
-        for(int i = 0; i<JsonList.size();i++){
-            appMailDataService.SaveByJsonCus(JsonList.get(i));
-        }
-        LOGGER.info("Fetch mail data complete.");
-        return appMailDataService.getAllCusData();
+        return appMailDataService.receiveMail();
     }
     @GetMapping("/getCusNewData")
     public List<CustomerLog> getCusNewData(){
-        AppReceiveNewMail app = new AppReceiveNewMail();
-        List<String> JsonList = new LinkedList<String>();
-        JsonList = app.receiveNewMail();
-        for(int i = 0; i<JsonList.size();i++){
-            appMailDataService.SaveByJsonCus(JsonList.get(i));
-        }
-        return appMailDataService.getAllCusData();
+        return appMailDataService.receiveNewMail();
     }
-//    @GetMapping("/getCusNewData")
-//    public List<CustomerLog> getCusNewData1(){
-//        AppReceiveNewMail app = new AppReceiveNewMail();
-//        List<String> JsonList = new LinkedList<String>();
-//        JsonList = app.receiveNewMail();
-//        for(int i = 0; i<JsonList.size();i++){
-//            appMailDataService.SaveByJsonCus(JsonList.get(i));
-//        }
-//        return new ResponseEntity<String>("",HttpStatus.OK);
-//    }
+    @GetMapping("/getReply")
+    public void replyMessage(@RequestParam ("messageNum")int messageNum){
+        replyMessage r = new replyMessage();
+        r.reply(messageNum);
+    }
+
     @PostMapping("/savebyjson")
     public void Savebyjson(@RequestBody String json){
         LOGGER.info("Json : {}",json);
@@ -78,17 +61,17 @@ public class AppMailDataController {
         sender = URLDecoder.decode(sender, StandardCharsets.UTF_8.name());
         return appMailDataService.getAllData(sender);
     }
-    @GetMapping("/getNewDataAll")
-    public List<CustomerLog>  findBySenderNewMsg(@RequestParam ("sender")String sender) throws UnsupportedEncodingException {
-        sender = URLDecoder.decode(sender, StandardCharsets.UTF_8.name());
-        AppReceiveNewMail app = new AppReceiveNewMail();
-        List<String> JsonList = new LinkedList<String>();
-        JsonList = app.receiveNewMail();
-        for (int i = 0; i < JsonList.size(); i++) {
-            appMailDataService.SaveByJsonCus(JsonList.get(i));
-        }
-        return appMailDataService.getAllData(sender);
-    }
+//    @GetMapping("/getNewDataAll")
+//    public List<CustomerLog>  findBySenderNewMsg(@RequestParam ("sender")String sender) throws UnsupportedEncodingException {
+//        sender = URLDecoder.decode(sender, StandardCharsets.UTF_8.name());
+//        AppReceiveNewMail app = new AppReceiveNewMail();
+//        List<String> JsonList = new LinkedList<String>();
+//        JsonList = app.receiveNewMail();
+//        for (int i = 0; i < JsonList.size(); i++) {
+//            appMailDataService.SaveByJsonCus(JsonList.get(i));
+//        }
+//        return appMailDataService.getAllData(sender);
+//    }
     @PutMapping("/editData/{id}")
     public CustomerLog editData(@RequestBody CustomerLog customerLog,@PathVariable("id") Long id){
         LOGGER.info("edit {}",customerLog.getSentDate());

@@ -37,8 +37,8 @@ public class AppReceiveNewMail {
         CheckThisEmail c = new CheckThisEmail();
         AppReceiveMail appReceiveMail = new AppReceiveMail();
 
-        autoReply2 a = new autoReply2();
-        a.autoReply(false);
+//        autoReply2 a = new autoReply2();
+//        a.autoReply(false);
 
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 
@@ -106,7 +106,7 @@ public class AppReceiveNewMail {
 
                 String sender = c.splitWord2(s);
 
-                String emil = c.splitWord1(s);
+                String email = c.splitWord1(s);
 
 
                 String CC ="",BCC="";
@@ -202,10 +202,9 @@ public class AppReceiveNewMail {
 
                 System.out.println("------------------------------------------------------------");
 
-                Timestamp timestamp = new java.sql.Timestamp(mes.getSentDate().getTime());
+                String t = formatter.format(mes.getSentDate()).toString();
 
-                json = "{\"sender\":\""+sender+"\",\"send_To\":\""+email_id+"\",\"email\":\""+emil+"\",\"msg\":\""+result+"\",\"attachments\":\""+attachFiles+"\",\"responsible\":\"----\",\"sentDate\":\""+timestamp.getTime()+"\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\""+mes.getSubject()+"\",\"CC\":\""+CC+"\",\"BCC\":\""+BCC+"\"}";
-
+                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\",\"messageNum\":\""+mes.getMessageNumber()+"\"}";
                 JsonList.add(json);
             }
 

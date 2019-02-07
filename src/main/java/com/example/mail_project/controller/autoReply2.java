@@ -15,12 +15,7 @@ import java.util.Properties;
 
 public class autoReply2 {
     public static void main(String[] args) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        String dateInString = "07/06/2013 00:00:00";
-        Date date = formatter.parse(dateInString);
 
-        System.out.println(date);
-        System.out.println(formatter.format(date));
     }
     public void autoReply(boolean Seen){
         try {
@@ -69,57 +64,57 @@ public class autoReply2 {
 
             Message[] message = pfolder.getMessages();
             System.out.println("UNREAD MESSAGES : " + folder.getUnreadMessageCount());
-            for (int i = 0; i < mes.length; i++) {
-                Message mess = mes[i];
-                System.out.println("IS SEEN : " + message[i].isSet(Flag.SEEN));
-                System.out.println("------------ Message " + (i + 1) + " ------------");
-                System.out.println("SentDate : " + mess.getSentDate());
-                System.out.println("From : " + mess.getFrom()[0]);
-                System.out.println("Subject : " + mess.getSubject());
-
-
-                String to = InternetAddress.toString(mess.getRecipients(Message.RecipientType.TO));
-                String CC = InternetAddress.toString(mess.getRecipients(Message.RecipientType.CC));
-
-                InputStream stream = message[i].getInputStream();
-                while (stream.available() != 0) {
-                    System.out.print((char) stream.read());
-                }
-                //set autoReply
-                mes[i].setFlag(Flag.SEEN, Seen);
-                Message replyMessage = new MimeMessage(session);
-                replyMessage = (MimeMessage) mess.reply(false);
-                replyMessage.setText("Thanks you. Test Auto Reply.");//ตั้งค่าข้อความที่จะ reply
-                replyMessage.setReplyTo(mess.getReplyTo());
-                System.out.println(to);
-                System.out.println(CC);
-
-                //ตอบกลับ email ที่ถูก CC มา
-                if(mess.getRecipients(Message.RecipientType.CC)!=null) {//ถ้าไม่มี CC
-                    System.out.println("CC has been");
-                    replyMessage.setFrom(new InternetAddress(to));
-                    replyMessage.addRecipient(Message.RecipientType.CC,new InternetAddress(CC));
-
-                }else if (mess.getRecipients(Message.RecipientType.CC)==null){//ถ้ามี CC
-                    System.out.println("CC not has been");
-                    replyMessage.setFrom(new InternetAddress(to));
-
-                }
-
-                //reply
-                Transport t = session.getTransport("smtp");
-                try {
-                    t.connect(host,user, password);
-                    System.out.println("connected...");
-                    t.sendMessage(replyMessage,replyMessage.getAllRecipients());
-
-                }catch (Exception ex){
-                    System.out.println("Error------------>"+ex.getMessage());
-                }finally {
-                    t.close();
-                }
-                System.out.println("message replied successfully ....");
-            }
+//            for (int i = 0; i < mes.length; i++) {
+//                Message mess = mes[i];
+//                System.out.println("IS SEEN : " + message[i].isSet(Flag.SEEN));
+//                System.out.println("------------ Message " + (i + 1) + " ------------");
+//                System.out.println("SentDate : " + mess.getSentDate());
+//                System.out.println("From : " + mess.getFrom()[0]);
+//                System.out.println("Subject : " + mess.getSubject());
+//
+//
+//                String to = InternetAddress.toString(mess.getRecipients(Message.RecipientType.TO));
+//                String CC = InternetAddress.toString(mess.getRecipients(Message.RecipientType.CC));
+//
+//                InputStream stream = message[i].getInputStream();
+//                while (stream.available() != 0) {
+//                    System.out.print((char) stream.read());
+//                }
+//                //set autoReply
+//                mes[i].setFlag(Flag.SEEN, Seen);
+//                Message replyMessage = new MimeMessage(session);
+//                replyMessage = (MimeMessage) mess.reply(false);
+//                replyMessage.setText("Thanks you. Test Auto Reply.");//ตั้งค่าข้อความที่จะ reply
+//                replyMessage.setReplyTo(mess.getReplyTo());
+//                System.out.println(to);
+//                System.out.println(CC);
+//
+//                //ตอบกลับ email ที่ถูก CC มา
+//                if(mess.getRecipients(Message.RecipientType.CC)!=null) {//ถ้าไม่มี CC
+//                    System.out.println("CC has been");
+//                    replyMessage.setFrom(new InternetAddress(to));
+//                    replyMessage.addRecipient(Message.RecipientType.CC,new InternetAddress(CC));
+//
+//                }else if (mess.getRecipients(Message.RecipientType.CC)==null){//ถ้ามี CC
+//                    System.out.println("CC not has been");
+//                    replyMessage.setFrom(new InternetAddress(to));
+//
+//                }
+//
+//                //reply
+//                Transport t = session.getTransport("smtp");
+//                try {
+//                    t.connect(host,user, password);
+//                    System.out.println("connected...");
+//                    t.sendMessage(replyMessage,replyMessage.getAllRecipients());
+//
+//                }catch (Exception ex){
+//                    System.out.println("Error------------>"+ex.getMessage());
+//                }finally {
+//                    t.close();
+//                }
+//                System.out.println("message replied successfully ....");
+//            }
             folder.close(true);
             store.close();
 

@@ -3,7 +3,6 @@ package com.example.mail_project.service;
 import com.example.mail_project.entity.CustomerLog;
 import com.example.mail_project.entity.LineDataImg;
 import com.example.mail_project.entity.MasterDataDetail;
-import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -91,5 +90,9 @@ public interface AppMailDataService {
     List<CustomerLog> findByDate(double startTime,double endTime);
 
     List<CustomerLog> findCustomerLogByCriteria2(String startTime,String endTime);
+
+    List<CustomerLog> receiveMail();
+
+    List<CustomerLog> receiveNewMail();
 
 }

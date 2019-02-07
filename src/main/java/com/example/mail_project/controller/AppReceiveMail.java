@@ -1,10 +1,14 @@
 package com.example.mail_project.controller;
 
 
+import com.example.mail_project.entity.CustomerLog;
+import com.example.mail_project.repository.CustomerLogRepository;
 import com.example.mail_project.service.AppMailDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.mail.*;
 import javax.mail.Message.RecipientType;
@@ -18,6 +22,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+@Service
 public class AppReceiveMail {
     private Logger LOGGER = LoggerFactory.getLogger(this.getClass());
 
@@ -27,9 +32,11 @@ public class AppReceiveMail {
     @Autowired
     private AppMailDataService appMailDataService;
 
+    @Autowired
+    private CustomerLogRepository customerLogRepository;
 
-    public List<String> receiveMail() {
 
+    public void receiveMail() {
 
         List<String> JsonList = new LinkedList<String>();
         String json = "";
@@ -187,22 +194,29 @@ public class AppReceiveMail {
 
                 System.out.println("------------------------------------------------------------");
 
-                String t = formatter.format(mes.getSentDate()).toString();
-
-//                LOGGER.info("t : "+String.valueOf(t));
-//
-//                Date parsedDate = formatter.parse(t);
-//
-//                LOGGER.info("parsedDate : "+String.valueOf(formatter.format(parsedDate)));
-
-                Timestamp timestamp = new java.sql.Timestamp(mes.getSentDate().getTime());
-
-                LOGGER.info("timestamp : "+String.valueOf(timestamp));
 
 
-                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\"}";
-                JsonList.add(json);
-            }
+                CustomerLog customerLog = new CustomerLog();
+                customerLog.setSender(sender);
+                customerLog.setSend_To(email_id);
+                customerLog.setEmail(email);
+                customerLog.setMsg(result);
+                customerLog.setAttachments(attachFiles);
+                customerLog.setResponsible("----");
+                customerLog.setSentDate(mes.getSentDate());
+                customerLog.setStatus("wait..");
+                customerLog.setType("E-MAIL");
+                customerLog.setSubject(mes.getSubject());
+                customerLog.setCC(CC);
+                customerLog.setBCC(BCC);
+                customerLog.setMessageNum(mes.getMessageNumber());
+                customerLog.setLevel("0");
+                LOGGER.info("check repo     :    {}",null == customerLogRepository);
+                customerLogRepository.save(customerLog);
+
+//                json = "{\"sender\":\"" + sender + "\",\"send_To\":\"" + email_id + "\",\"email\":\"" + email + "\",\"msg\":\"" + result + "\",\"attachments\":\"" + attachFiles + "\",\"responsible\":\"----\",\"sentDate\":\"" + t + "\",\"status\":\"wait..\",\"type\":\"E-MAIL\",\"subject\":\"" + mes.getSubject() + "\",\"CC\":\"" + CC + "\",\"BCC\":\"" + BCC + "\",\"messageNum\":\""+mes.getMessageNumber()+"\"}";
+//                JsonList.add(json);
+           }
 
 
             inbox.close(true);
@@ -213,7 +227,7 @@ public class AppReceiveMail {
             e.printStackTrace();
         }
 
-        return JsonList;
+        //return JsonList;
     }
 
     //method ที่ทำหน้าที่ getText content จาก email ออกมา

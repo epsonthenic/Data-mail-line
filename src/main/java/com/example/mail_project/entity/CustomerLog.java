@@ -43,6 +43,8 @@ public class CustomerLog {
 
     //private  String sentDate;
 
+    private int messageNum;
+
     private String status;//status
     private String type;//type
     private String level="0";//level
