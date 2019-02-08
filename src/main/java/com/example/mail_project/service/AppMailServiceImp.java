@@ -212,6 +212,7 @@ public class AppMailServiceImp implements AppMailDataService {
     public List<CustomerLog> receiveNewMail() {
         String countlevelMax = "";
         String countlevel = "";
+        boolean flag = false;
         String email_id = "pingge12345678@gmail.com";
         String password = "E12345678";
 
@@ -273,8 +274,10 @@ public class AppMailServiceImp implements AppMailDataService {
 
                     if (mes.isSet(Flags.Flag.FLAGGED)) {
                         System.out.println("ติดดาว");
+                        flag = true;
                     }else{
                         System.out.println("ไม่ติดดาว");
+                        flag = false;
                     }
                     if (mes.isSet(Flags.Flag.ANSWERED)) {
                         System.out.println("ตอบกลับแล้ว");
@@ -414,6 +417,7 @@ public class AppMailServiceImp implements AppMailDataService {
                     customerLog.setCC(CC);
                     customerLog.setBCC(BCC);
                     customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setFlag(flag);
 
                     if ((hasText1 == true) && (hasText2 == false)) {
                         customerLog.setLevel(countlevel);
@@ -449,6 +453,7 @@ public class AppMailServiceImp implements AppMailDataService {
     public List<CustomerLog> receiveMail() {
         String countlevelMax = "";
         String countlevel = "";
+        boolean flag = false;
         String email_id = "pingge12345678@gmail.com";
         String password = "E12345678";
 
@@ -502,8 +507,10 @@ public class AppMailServiceImp implements AppMailDataService {
 
                     if (mes.isSet(Flags.Flag.FLAGGED)) {
                         System.out.println("ติดดาว");
+                        flag = true;
                     }else{
                         System.out.println("ไม่ติดดาว");
+                        flag = false;
                     }
                     if (mes.isSet(Flags.Flag.ANSWERED)) {
                         System.out.println("ตอบกลับแล้ว");
@@ -619,16 +626,16 @@ public class AppMailServiceImp implements AppMailDataService {
                     LOGGER.info("Message : {}", result);
                     boolean hasText1 = result.contains("ด่วน");
                     boolean hasText2 = result.contains("ด่วนมาก");
-                    List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
-                    LOGGER.info("Conten : {}",listKeyword.size());
-                    String resultKeyword = "";
-                    List<String> keywordSplitList = null;
-                    resultKeyword = listKeyword.get(0).getVariable1();
-                    keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
-                    countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
-                    int num = Integer.parseInt(countlevelMax) - 1;
-                    countlevel = Integer.toString(num);
-                    LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
+//                    List<MasterDataDetail> listKeyword = masterDataDetailRepository.findMasterDataDetailsByIdEquals(new Long("200"), "level.list");
+//                    LOGGER.info("Conten : {}",listKeyword.size());
+//                    String resultKeyword = "";
+//                    List<String> keywordSplitList = null;
+//                    resultKeyword = listKeyword.get(0).getVariable1();
+//                    keywordSplitList = Arrays.asList(resultKeyword.split("\\s*,\\s*"));
+//                    countlevelMax = keywordSplitList.get(keywordSplitList.size()-1);
+//                    int num = Integer.parseInt(countlevelMax) - 1;
+//                    countlevel = Integer.toString(num);
+//                    LOGGER.info("level-Max : {} : {}", countlevel,countlevelMax);
                     CustomerLog customerLog = new CustomerLog();
                     customerLog.setSender(sender);
                     customerLog.setSend_To(email_id);
@@ -643,6 +650,7 @@ public class AppMailServiceImp implements AppMailDataService {
                     customerLog.setCC(CC);
                     customerLog.setBCC(BCC);
                     customerLog.setMessageNum(mes.getMessageNumber());
+                    customerLog.setFlag(flag);
 
                     if ((hasText1 == true) && (hasText2 == false)) {
                         customerLog.setLevel("2");
